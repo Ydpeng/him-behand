@@ -1,0 +1,225 @@
+{
+	"tool_schema": {
+		"name": "ADMET 预测",
+		"description": "预测小分子的吸收、分布、代谢、排泄和毒性",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"input": {
+					"type": "string",
+					"description": "小分子结构或标识符"
+				},
+				"num_results": {
+					"type": "integer",
+					"default": 10,
+					"description": "返回结果数量"
+				}
+			},
+			"required": ["input"]
+		},
+		"returns": {
+			"type": "object",
+			"properties": {
+				"results": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "ADMET 预测结果列表"
+				}
+			}
+		}
+	},
+	"url": "https://api.example.com/admet/predict",
+	"callable": "examples.example_tools:ADMET_prediction"
+}
+
+
+{
+  "tool_schema": {
+    "name": "AutoDock Vina 对接",
+    "description": "业界标准的分子对接工具，用于评估配体-受体结合模式和亲和力",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "receptor_file": {
+          "type": "string",
+          "description": "受体蛋白结构文件路径"
+        },
+        "ligand_file": {
+          "type": "string", 
+          "description": "配体分子文件路径"
+        },
+        "center_x": {
+          "type": "number",
+          "description": "对接中心X坐标"
+        },
+        "center_y": {
+          "type": "number",
+          "description": "对接中心Y坐标"
+        },
+        "center_z": {
+          "type": "number",
+          "description": "对接中心Z坐标"
+        },
+        "size_x": {
+          "type": "number",
+          "default": 25,
+          "description": "对接盒子X方向尺寸"
+        },
+        "size_y": {
+          "type": "number", 
+          "default": 25,
+          "description": "对接盒子Y方向尺寸"
+        },
+        "size_z": {
+          "type": "number",
+          "default": 25,
+          "description": "对接盒子Z方向尺寸"
+        }
+      },
+      "required": [
+        "receptor_file",
+        "ligand_file",
+        "center_x", 
+        "center_y",
+        "center_z"
+      ]
+    },
+    "returns": {
+      "type": "object",
+      "properties": {
+        "binding_affinity": {
+          "type": "number",
+          "description": "结合亲和力 (kcal/mol)"
+        },
+        "best_pose": {
+          "type": "string",
+          "description": "最佳对接构象文件路径"
+        },
+        "all_poses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "所有对接构象文件路径"
+        }
+      }
+    }
+  },
+  "url": "http://localhost:8000/vina/dock",
+  "callable": "examples.example_tools:AutoDock_Vina"
+}
+
+{
+  "tool_schema": {
+    "name": "De Novo 分子生成",
+    "description": "AI驱动的从头药物设计，基于目标特性生成新型候选分子",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target_properties": {
+          "type": "string",
+          "description": "目标分子特性描述（如：logP范围、分子量、靶点等）"
+        },
+        "scaffold": {
+          "type": "string",
+          "description": "分子骨架或参考结构（SMILES格式）",
+          "default": ""
+        },
+        "num_molecules": {
+          "type": "integer",
+          "default": 10,
+          "description": "生成分子数量"
+        },
+        "diversity": {
+          "type": "number",
+          "default": 0.7,
+          "description": "分子多样性系数（0-1）"
+        }
+      },
+      "required": [
+        "target_properties"
+      ]
+    },
+    "returns": {
+      "type": "object",
+      "properties": {
+        "generated_molecules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "smiles": {
+                "type": "string",
+                "description": "分子SMILES表示"
+              },
+              "properties": {
+                "type": "object",
+                "description": "预测的分子特性"
+              },
+              "score": {
+                "type": "number",
+                "description": "生成质量评分"
+              }
+            }
+          }
+        },
+        "generation_stats": {
+          "type": "object",
+          "properties": {
+            "total_generated": {
+              "type": "integer",
+              "description": "总生成数量"
+            },
+            "valid_molecules": {
+              "type": "integer",
+              "description": "有效分子数量"
+            },
+            "success_rate": {
+              "type": "number",
+              "description": "生成成功率"
+            }
+          }
+        }
+      }
+    }
+  },
+  "url": "http://localhost:8000/denovo/generate",
+  "callable": "examples.example_tools:De_Novo"
+}
+{
+  "tool_schema": {
+    "name": "LinearDesign mRNA 设计",
+    "description": "化碱基配对和密码子使用，显著提升mRNA稳定性、蛋白质表达及免疫原性",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "string"
+        },
+        "num_results": {
+          "type": "integer",
+          "default": 10
+        }
+      },
+      "required": [
+        "input"
+      ]
+    },
+    "returns": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "callable": "examples.example_tools:De_Novo"
+}
+
+

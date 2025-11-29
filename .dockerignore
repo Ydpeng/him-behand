@@ -1,0 +1,51 @@
+# Docker ignore file
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+.env
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git
+.hg
+.svn
+.DS_Store
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.idea/
+.vscode/
+data/
+*.log
+*.tmp
+*.bak
+*.backup
+*.swp
+*~
+# Ignore development files
+README.md
+DOCUMENTATION.md
+使用说明.md
+SUMMARY.md
+ADVANCED_FEATURES.md
+# Ignore test files
+tests/
+# Ignore example files
+examples/
+# Ignore template files
+*.template
