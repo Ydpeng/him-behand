@@ -10,7 +10,7 @@ uvicorn>=0.24.0
 python-multipart>=0.0.6
 
 # Optional: LLM API clients (uncomment as needed)
-# openai>=1.0.0
+# openai>=0.27.0  # 使用兼容版本
 # anthropic>=0.18.0
 
 # Development and testing
@@ -24,4 +24,8 @@ colorlog>=6.7.0
 dashvector>=0.1.0
 # DashScope SDK
 dashscope>=0.1.0
-
+# PostgreSQL database adapter
+psycopg2-binary>=2.9.0  # 使用二进制版本避免编译问题
+# OSS SDK
+aliyun-python-sdk-core>=2.13.0
+aliyun-python-sdk-oss2>=2.18.0  

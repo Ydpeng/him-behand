@@ -3,10 +3,16 @@ FROM python:3.11-slim
 # 设置工作目录
 WORKDIR /app
 
+# 先安装系统依赖（PostgreSQL客户端库等）
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
 # 复制项目文件
 COPY . /app/
 
-# 安装依赖
+# 安装Python依赖
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 创建数据目录
@@ -40,4 +46,4 @@ EXPOSE 8000
 ENTRYPOINT ["/app/entrypoint.sh"]
 
 # 设置默认启动命令
-CMD ["python", "start_api.py"]
+CMD ["python", "astraflow/api.py"]
