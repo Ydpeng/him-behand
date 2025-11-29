@@ -27,5 +27,4 @@ dashscope>=0.1.0
 # PostgreSQL database adapter
 psycopg2-binary>=2.9.0  # 使用二进制版本避免编译问题
 # OSS SDK
-aliyun-python-sdk-core>=2.13.0
-aliyun-python-sdk-oss2>=2.18.0  
+oss2>=2.18.0  # 使用正确的OSS包名  

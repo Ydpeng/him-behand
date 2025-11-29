@@ -12,8 +12,16 @@ RUN apt-get update && apt-get install -y \
 # 复制项目文件
 COPY . /app/
 
-# 安装Python依赖
-RUN pip install --no-cache-dir -r requirements.txt
+# 安装Python依赖（分步安装，先安装核心依赖）
+RUN pip install --no-cache-dir \
+    pydantic>=2.0.0 \
+    requests>=2.31.0 \
+    fastapi>=0.104.0 \
+    uvicorn>=0.24.0 \
+    python-multipart>=0.0.6 \
+    psycopg2-binary>=2.9.0 \
+    oss2>=2.18.0 \
+    && pip install --no-cache-dir -r requirements.txt
 
 # 创建数据目录
 RUN mkdir -p /app/data/feedback_labels
