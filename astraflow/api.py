@@ -30,9 +30,11 @@ import psycopg2
 
 # 添加父目录到路径
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from .embedding import generate_embeddings, search_relevant_tools, answer_question
-from config import DASHVECTOR_API_KEY, DASHVECTOR_ENDPOINT, POSTGRES_CONFIG, OSS_CONFIG, POSTGRES_CONFIG
-from .models import ToolSchema, Workflow
+
+# 使用绝对导入避免相对导入问题
+from astraflow.embedding import generate_embeddings, search_relevant_tools, answer_question
+from config import DASHVECTOR_API_KEY, DASHVECTOR_ENDPOINT, POSTGRES_CONFIG, OSS_CONFIG
+from astraflow.models import ToolSchema, Workflow
 import psycopg2
 import oss2
 
@@ -123,9 +125,9 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 from pydantic import BaseModel
 
 
-from .tool_registry import ToolRegistry, APIConfig
-from .workflow_generator import WorkflowGenerator
-from .mcp import MasterControlPlane
+from astraflow.tool_registry import ToolRegistry, APIConfig
+from astraflow.workflow_generator import WorkflowGenerator
+from astraflow.mcp import MasterControlPlane
 
 
 

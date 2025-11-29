@@ -67,6 +67,8 @@ if [ $# -eq 0 ]; then
     # 如果没有传入参数，直接运行 api.py 文件
     # 这样确保所有的 FastAPI 路由都被正确加载
     echo "直接运行 astraflow/api.py..."
+    # 设置Python路径，确保模块导入正确
+    export PYTHONPATH=/app:$PYTHONPATH
     exec python astraflow/api.py
 else
     # 执行传入的命令
